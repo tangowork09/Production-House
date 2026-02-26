@@ -1,0 +1,335 @@
+.contact-page {
+  padding-top: 80px; /* navbar offset */
+  min-height: 80vh;
+}
+
+/* ─── Hero Header ─────────────────────────────────── */
+.contact-page__hero {
+  background: #0f0f0f;
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.contact-page__label {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 14px;
+}
+
+.contact-page__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: #f0f0f0;
+  margin-bottom: 16px;
+}
+
+.contact-page__sub {
+  font-size: 1.05rem;
+  color: #aaa;
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ─── Body ────────────────────────────────────────── */
+.contact-page__body {
+  padding-block: 72px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ─── Card ────────────────────────────────────────── */
+.contact-page__card {
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 48px 52px;
+  width: 100%;
+  max-width: 640px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.07);
+}
+
+/* ─── Form layout ─────────────────────────────────── */
+.cp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.cp-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+/* ─── Field ───────────────────────────────────────── */
+.cp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.cp-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  letter-spacing: 0.01em;
+}
+
+.cp-required {
+  color: var(--color-accent);
+}
+
+.cp-field input,
+.cp-field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: #1a1a1a;
+  background: #fafafa;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.cp-field input::placeholder,
+.cp-field textarea::placeholder {
+  color: #b0b0b0;
+  font-size: 0.9rem;
+}
+
+.cp-field input:focus,
+.cp-field textarea:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(184, 146, 42, 0.12);
+  background: #ffffff;
+}
+
+/* Error state */
+.cp-field--error input,
+.cp-field--error textarea {
+  border-color: #e53935;
+  box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.1);
+}
+
+.cp-error {
+  font-size: 0.78rem;
+  color: #e53935;
+  font-weight: 500;
+}
+
+/* ─── Feedback ────────────────────────────────────── */
+.cp-feedback--error {
+  font-size: 0.88rem;
+  color: #e53935;
+  font-weight: 500;
+}
+
+/* ─── Phone row (country picker + number input) ──── */
+.cp-phone-row {
+  display: flex;
+  gap: 8px;
+}
+
+.cp-phone-row input {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ─── Custom dial picker ──────────────────────────── */
+.cp-dial {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.cp-dial__trigger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 108px;
+  padding: 12px 10px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: #1a1a1a;
+  background: #fafafa;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  white-space: nowrap;
+}
+
+.cp-dial__trigger:focus,
+.cp-dial__trigger[aria-expanded="true"] {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(184, 146, 42, 0.12);
+  background: #ffffff;
+}
+
+.cp-dial__trigger--error {
+  border-color: #e53935;
+  box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.1);
+}
+
+.cp-dial__flag { font-size: 1.1rem; line-height: 1; }
+.cp-dial__code { font-size: 0.85rem; font-weight: 600; }
+
+.cp-dial__chevron {
+  margin-left: auto;
+  color: #888;
+  transition: transform 0.18s ease;
+  flex-shrink: 0;
+}
+.cp-dial__chevron--open { transform: rotate(180deg); }
+
+/* Dropdown panel */
+.cp-dial__dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 200;
+  background: #ffffff;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  width: 240px;
+  overflow: hidden;
+  animation: dial-drop 0.15s ease;
+}
+
+@keyframes dial-drop {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Search input inside dropdown */
+.cp-dial__search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.cp-dial__search {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 0.88rem;
+  font-family: inherit;
+  color: #1a1a1a;
+  background: transparent;
+}
+
+.cp-dial__search::placeholder { color: #bbb; }
+
+/* Options list */
+.cp-dial__list {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+  max-height: 220px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #ddd transparent;
+}
+
+.cp-dial__option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 14px;
+  cursor: pointer;
+  transition: background 0.12s ease;
+  font-size: 0.88rem;
+}
+
+.cp-dial__option:hover { background: #f5f5f5; }
+
+.cp-dial__option--active {
+  background: #faf6ee;
+  font-weight: 600;
+}
+
+.cp-dial__opt-flag { font-size: 1.1rem; line-height: 1; flex-shrink: 0; }
+.cp-dial__opt-name { flex: 1; color: #1a1a1a; }
+.cp-dial__opt-code { color: #888; font-size: 0.8rem; flex-shrink: 0; }
+
+.cp-dial__empty {
+  padding: 14px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+/* ─── Submit button ───────────────────────────────── */
+.cp-btn {
+  margin-top: 4px;
+  padding: 14px 32px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: #0a0a0a;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.cp-btn:hover:not(:disabled) {
+  background: var(--color-accent);
+  transform: translateY(-1px);
+}
+
+.cp-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ─── Success state ───────────────────────────────── */
+.cp-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  padding: 20px 0;
+}
+
+.cp-success h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0a0a0a;
+}
+
+.cp-success p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+  max-width: 360px;
+}
+
+/* ─── Responsive ──────────────────────────────────── */
+@media (max-width: 640px) {
+  .contact-page__card {
+    padding: 32px 20px;
+  }
+
+  .cp-row {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,275 @@
+.gallery {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  background: #f7f8fa;
+  border-top: 1px solid #e8e8e8;
+}
+
+/* ─── Header ──────────────────────────────────────── */
+.gallery__header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 48px;
+}
+
+.gallery__label {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 12px;
+}
+
+.gallery__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 700;
+  color: #0a0a0a;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.gallery__sub {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* ─── Full-width outer — arrows overlay the track ─── */
+.gallery__outer {
+  position: relative;
+  width: 100%;
+}
+
+/* ─── Scrollable track — full viewport width ─────── */
+.gallery__track {
+  display: flex;
+  height: 520px;
+  gap: 4px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
+}
+
+.gallery__track::-webkit-scrollbar { display: none; }
+
+.gallery__track--dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+}
+
+/* ─── Portrait slot (tall/mobile aspect ~9:16) ────── */
+/* width = 520px height × (9/16) = 293px               */
+.gallery__slot--portrait {
+  flex-shrink: 0;
+  width: 293px;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.gallery__slot--portrait > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease, filter 0.4s ease;
+  pointer-events: none;
+}
+
+.gallery__slot--portrait:hover > img {
+  transform: scale(1.05);
+  filter: brightness(0.68);
+}
+
+/* ─── Pair slot (2 landscape images stacked) ─────── */
+/* each img height = (520 - 4gap) / 2 = 258px         */
+/* width = 258px × (16/9) = 459px                     */
+.gallery__slot--pair {
+  flex-shrink: 0;
+  width: 460px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.gallery__pair-img {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.gallery__pair-img > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease, filter 0.4s ease;
+  pointer-events: none;
+}
+
+.gallery__pair-img:hover > img {
+  transform: scale(1.06);
+  filter: brightness(0.68);
+}
+
+/* ─── Expand icon overlay ─────────────────────────── */
+.gallery__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.gallery__slot--portrait:hover .gallery__overlay,
+.gallery__pair-img:hover .gallery__overlay {
+  opacity: 1;
+}
+
+/* ─── Arrow buttons — float over track edges ─────── */
+.gallery__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.52);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.gallery__arrow:hover { background: rgba(0, 0, 0, 0.8); }
+
+.gallery__arrow--prev { left: 20px; }
+.gallery__arrow--next { right: 20px; }
+
+.gallery__arrow--prev:hover { transform: translateY(-50%) translateX(-2px); }
+.gallery__arrow--next:hover { transform: translateY(-50%) translateX(2px); }
+
+/* ─── Lightbox ────────────────────────────────────── */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.93);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: lb-fade-in 0.2s ease;
+}
+
+@keyframes lb-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.lightbox__img {
+  max-width: 90vw;
+  max-height: 88vh;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+  animation: lb-zoom-in 0.22s ease;
+  display: block;
+}
+
+@keyframes lb-zoom-in {
+  from { transform: scale(0.94); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+
+.lightbox__close {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+  z-index: 1001;
+  backdrop-filter: blur(4px);
+}
+
+.lightbox__close:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: rotate(90deg) scale(1.08);
+}
+
+.lightbox__nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+  z-index: 1001;
+  backdrop-filter: blur(4px);
+}
+
+.lightbox__nav:hover { background: rgba(255, 255, 255, 0.22); }
+.lightbox__nav--prev { left: 24px; }
+.lightbox__nav--next { right: 24px; }
+.lightbox__nav--prev:hover { transform: translateY(-50%) translateX(-2px); }
+.lightbox__nav--next:hover { transform: translateY(-50%) translateX(2px); }
+
+.lightbox__counter {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.1em;
+  pointer-events: none;
+}
+
+/* ─── Responsive ──────────────────────────────────── */
+@media (max-width: 768px) {
+  .gallery__track   { height: 320px; }
+  .gallery__slot--portrait { width: 180px; }
+  .gallery__slot--pair     { width: 284px; }
+  .gallery__arrow   { width: 40px; height: 40px; }
+  .gallery__arrow--prev { left: 10px; }
+  .gallery__arrow--next { right: 10px; }
+  .lightbox__nav    { width: 40px; height: 40px; }
+  .lightbox__nav--prev { left: 8px; }
+  .lightbox__nav--next { right: 8px; }
+}

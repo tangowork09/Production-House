@@ -1,0 +1,47 @@
+.service-page {
+  padding-top: 80px; /* navbar offset */
+  min-height: 60vh;
+}
+
+.service-page__hero {
+  background: #0f0f0f;
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.service-page__label {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 14px;
+}
+
+.service-page__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: #f0f0f0;
+  margin-bottom: 16px;
+}
+
+.service-page__sub {
+  font-size: 1.05rem;
+  color: #aaa;
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.service-page__body {
+  padding-block: 80px;
+}
+
+.service-page__coming {
+  font-size: 1rem;
+  color: #888;
+  text-align: center;
+  padding: 60px 0;
+}

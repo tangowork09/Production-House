@@ -1,0 +1,110 @@
+.clients {
+  padding-block: 64px;
+  background: #fafafa;
+  border-top: 1px solid #e8e8e8;
+  overflow: hidden;
+}
+
+/* ─── Header ──────────────────────────────────────── */
+.clients__header {
+  text-align: center;
+  margin-bottom: 44px;
+}
+
+.clients__label {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 10px;
+}
+
+.clients__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 700;
+  color: #0a0a0a;
+  line-height: 1.2;
+}
+
+/* ─── Marquee ─────────────────────────────────────── */
+.clients__marquee-wrap {
+  width: 100%;
+  overflow: hidden;
+  /* fade out edges */
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  );
+}
+
+.clients__track {
+  display: flex;
+  width: max-content;
+  animation: clients-marquee 32s linear infinite;
+}
+
+.clients__track:hover {
+  animation-play-state: paused;
+}
+
+/* ─── Each client card ────────────────────────────── */
+.clients__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 0 28px;
+  flex-shrink: 0;
+  cursor: default;
+}
+
+/* Placeholder SVG logo — swap for <img> when real logos are ready */
+.clients__logo-svg {
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.clients__card:hover .clients__logo-svg {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+}
+
+/* When real logos are used */
+.clients__logo-img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  border-radius: 14px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.clients__card-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #1a1a1a;
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* ─── Animation ───────────────────────────────────── */
+@keyframes clients-marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
