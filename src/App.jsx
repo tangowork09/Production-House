@@ -2,7 +2,12 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
 import Home from './pages/Home'
-import TeamPage from './pages/TeamPage'
+// ── TEAM DESIGN SWITCH ──────────────────────────────────────────
+// Cinematic (video hero + glassmorphism) — current:
+// import TeamPage from './pages/TeamPage'
+// Light (clean editorial, warm cards) — saved:
+import TeamPage from './pages/TeamPageLight'
+// ────────────────────────────────────────────────────────────────
 import AboutPage from './pages/AboutPage'
 import AdFilms from './pages/services/AdFilms'
 import CorporateDocumentary from './pages/services/CorporateDocumentary'
