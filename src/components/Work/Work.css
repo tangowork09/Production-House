@@ -73,14 +73,14 @@
   flex-shrink: 0;
 }
 
-/* iframe fills the video pane; pointer-events: none blocks all interaction */
-.work-row__iframe {
+/* video fills the video pane; object-fit: cover ensures it fills the aspect ratio */
+.work-row__video-element {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   border: none;
-  pointer-events: none;
+  object-fit: cover;
 }
 
 /* ─── Content below ───────────────────────────────── */

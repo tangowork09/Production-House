@@ -1,7 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
 import './Hero.css'
-
-const VIDEO_ID = 'Ctyx5mh53TM'
 const WEB3FORMS_KEY = '5bdceb13-584a-4c8e-aaa8-aeec3b193ac8'
 
 const serviceOptions = [
@@ -54,14 +52,6 @@ export default function Hero() {
   const [errors, setErrors] = useState(initialErrors)
   const [touched, setTouched] = useState(initialTouched)
   const [status, setStatus] = useState('idle')
-
-  const iframeRef = useRef(null)
-  const [videoSrc, setVideoSrc] = useState(
-    `https://www.youtube.com/embed/${VIDEO_ID}` +
-    `?autoplay=1&mute=1&loop=1&playlist=${VIDEO_ID}` +
-    `&controls=0&showinfo=0&rel=0&iv_load_policy=3` +
-    `&modestbranding=1&playsinline=1`
-  )
   const [videoLoaded, setVideoLoaded] = useState(false)
 
   // ── Form logic ──────────────────────────────────────────────
@@ -131,15 +121,17 @@ export default function Hero() {
 
       {/* ── Left: video ── */}
       <div className={`hero__media ${videoLoaded ? 'hero__media--loaded' : ''}`}>
-        <iframe
-          ref={iframeRef}
+        <video
           className="hero__video"
-          src={videoSrc}
-          title="Prince Movie Creation showreel"
-          allow="autoplay; encrypted-media"
-          allowFullScreen
-          onLoad={() => setTimeout(() => setVideoLoaded(true), 500)}
-        />
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          onLoadedData={() => setVideoLoaded(true)}
+        >
+          <source src="/videos/showReel.mp4" type="video/mp4" />
+        </video>
       </div>
 
       {/* ── Right: callback form ── */}

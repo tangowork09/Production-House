@@ -4,27 +4,31 @@ import './Gallery.css'
 // ── Data: 'portrait' = mobile/tall, 'pair' = 2 landscape stacked vertically ──
 // Replace src values with your own AVIF/WebP paths, e.g. '/images/gallery/shot-01.avif'
 const rawItems = [
-  { type: 'portrait', src: 'https://picsum.photos/seed/pmc01/450/800', alt: 'Frame 1' },
-  { type: 'pair', images: [
-    { src: 'https://picsum.photos/seed/pmc02/800/450', alt: 'Frame 2' },
-    { src: 'https://picsum.photos/seed/pmc03/800/450', alt: 'Frame 3' },
-  ]},
+  { type: 'portrait', src: '/images/img-1.webp', alt: 'Prince Movie Creation — Frame 1' },
+  { type: 'portrait', src: '/images/img-2.webp', alt: 'Prince Movie Creation — Frame 2' },
+  { type: 'portrait', src: '/images/img-3.webp', alt: 'Prince Movie Creation — Frame 3' },
   { type: 'portrait', src: 'https://picsum.photos/seed/pmc04/450/800', alt: 'Frame 4' },
-  { type: 'pair', images: [
-    { src: 'https://picsum.photos/seed/pmc05/800/450', alt: 'Frame 5' },
-    { src: 'https://picsum.photos/seed/pmc06/800/450', alt: 'Frame 6' },
-  ]},
+  {
+    type: 'pair', images: [
+      { src: 'https://picsum.photos/seed/pmc05/800/450', alt: 'Frame 5' },
+      { src: 'https://picsum.photos/seed/pmc06/800/450', alt: 'Frame 6' },
+    ]
+  },
   { type: 'portrait', src: 'https://picsum.photos/seed/pmc07/450/800', alt: 'Frame 7' },
   { type: 'portrait', src: 'https://picsum.photos/seed/pmc08/450/800', alt: 'Frame 8' },
-  { type: 'pair', images: [
-    { src: 'https://picsum.photos/seed/pmc09/800/450', alt: 'Frame 9' },
-    { src: 'https://picsum.photos/seed/pmc10/800/450', alt: 'Frame 10' },
-  ]},
+  {
+    type: 'pair', images: [
+      { src: 'https://picsum.photos/seed/pmc09/800/450', alt: 'Frame 9' },
+      { src: 'https://picsum.photos/seed/pmc10/800/450', alt: 'Frame 10' },
+    ]
+  },
   { type: 'portrait', src: 'https://picsum.photos/seed/pmc11/450/800', alt: 'Frame 11' },
-  { type: 'pair', images: [
-    { src: 'https://picsum.photos/seed/pmc12/800/450', alt: 'Frame 12' },
-    { src: 'https://picsum.photos/seed/pmc13/800/450', alt: 'Frame 13' },
-  ]},
+  {
+    type: 'pair', images: [
+      { src: 'https://picsum.photos/seed/pmc12/800/450', alt: 'Frame 12' },
+      { src: 'https://picsum.photos/seed/pmc13/800/450', alt: 'Frame 13' },
+    ]
+  },
   { type: 'portrait', src: 'https://picsum.photos/seed/pmc14/450/800', alt: 'Frame 14' },
 ]
 
@@ -53,9 +57,9 @@ const ExpandIcon = () => (
 
 export default function Gallery() {
   const trackRef = useRef(null)
-  const drag     = useRef({ startX: 0, scrollLeft: 0, moved: false })
+  const drag = useRef({ startX: 0, scrollLeft: 0, moved: false })
   const [isDragging, setIsDragging] = useState(false)
-  const [lightbox,   setLightbox]   = useState(null) // null | flatIdx
+  const [lightbox, setLightbox] = useState(null) // null | flatIdx
 
   /* ── Arrow scroll ── */
   function scrollTrack(dir) {
@@ -78,8 +82,8 @@ export default function Gallery() {
 
   /* ── Lightbox controls ── */
   const closeLightbox = useCallback(() => setLightbox(null), [])
-  const prevLight     = useCallback(() => setLightbox(i => (i - 1 + allImages.length) % allImages.length), [])
-  const nextLight     = useCallback(() => setLightbox(i => (i + 1) % allImages.length), [])
+  const prevLight = useCallback(() => setLightbox(i => (i - 1 + allImages.length) % allImages.length), [])
+  const nextLight = useCallback(() => setLightbox(i => (i + 1) % allImages.length), [])
 
   function handleImgClick(flatIdx) {
     if (drag.current.moved) return // drag, not click
@@ -90,8 +94,8 @@ export default function Gallery() {
   useEffect(() => {
     if (lightbox === null) return
     function onKey(e) {
-      if (e.key === 'Escape')     closeLightbox()
-      if (e.key === 'ArrowLeft')  prevLight()
+      if (e.key === 'Escape') closeLightbox()
+      if (e.key === 'ArrowLeft') prevLight()
       if (e.key === 'ArrowRight') nextLight()
     }
     window.addEventListener('keydown', onKey)

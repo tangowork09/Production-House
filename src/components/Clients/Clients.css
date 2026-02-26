@@ -34,20 +34,16 @@
   width: 100%;
   overflow: hidden;
   /* fade out edges */
-  mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    #000 8%,
-    #000 92%,
-    transparent 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    #000 8%,
-    #000 92%,
-    transparent 100%
-  );
+  mask-image: linear-gradient(to right,
+      transparent 0%,
+      #000 8%,
+      #000 92%,
+      transparent 100%);
+  -webkit-mask-image: linear-gradient(to right,
+      transparent 0%,
+      #000 8%,
+      #000 92%,
+      transparent 100%);
 }
 
 .clients__track {
@@ -65,7 +61,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
   padding: 0 28px;
   flex-shrink: 0;
   cursor: default;
@@ -73,7 +68,7 @@
 
 /* Placeholder SVG logo — swap for <img> when real logos are ready */
 .clients__logo-svg {
-  width: 64px;
+  width: auto;
   height: 64px;
   border-radius: 14px;
   flex-shrink: 0;
@@ -87,11 +82,26 @@
 
 /* When real logos are used */
 .clients__logo-img {
-  width: 64px;
-  height: 64px;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
-  border-radius: 14px;
+  transition: transform 0.2s ease;
+}
+
+.clients__logo-box {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.clients__card:hover .clients__logo-box {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-color: var(--color-accent);
 }
 
 .clients__card-name {
@@ -105,6 +115,11 @@
 
 /* ─── Animation ───────────────────────────────────── */
 @keyframes clients-marquee {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }

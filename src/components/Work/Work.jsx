@@ -7,25 +7,25 @@ const categories = [
     slug: 'ad-films',
     title: 'Ad Films',
     desc: 'Creative ads that drive attention and results.',
-    videoId: 'YOUTUBE_ID_HERE',
+    video: '/videos/showReel.mp4',
   },
   {
     slug: 'corporate-documentary',
     title: 'Corporate | Documentary',
     desc: 'Authentic stories that build brand trust.',
-    videoId: 'YOUTUBE_ID_HERE',
+    video: '/videos/showReel.mp4',
   },
   {
     slug: 'music-videos',
     title: 'Music Videos',
     desc: 'Visuals that elevate sound and emotion.',
-    videoId: 'YOUTUBE_ID_HERE',
+    video: '/videos/showReel.mp4',
   },
   {
     slug: 'short-films',
     title: 'Short Films',
     desc: 'Stories told with cinematic excellence.',
-    videoId: 'YOUTUBE_ID_HERE',
+    video: '/videos/showReel.mp4',
   },
 ]
 
@@ -48,12 +48,16 @@ export default function Work() {
 
             {/* Video half — autoplay, muted, looped, no controls, no interaction */}
             <div className="work-row__video">
-              <iframe
-                src={`https://www.youtube.com/embed/${cat.videoId}?autoplay=1&mute=1&loop=1&playlist=${cat.videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&disablekb=1`}
-                title={cat.title}
-                allow="autoplay; encrypted-media"
-                className="work-row__iframe"
-              />
+              <video
+                className="work-row__video-element"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+              >
+                <source src={cat.video} type="video/mp4" />
+              </video>
             </div>
 
             {/* Content half */}

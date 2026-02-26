@@ -56,7 +56,9 @@
   user-select: none;
 }
 
-.gallery__track::-webkit-scrollbar { display: none; }
+.gallery__track::-webkit-scrollbar {
+  display: none;
+}
 
 .gallery__track--dragging {
   cursor: grabbing;
@@ -64,26 +66,30 @@
 }
 
 /* ─── Portrait slot (tall/mobile aspect ~9:16) ────── */
-/* width = 520px height × (9/16) = 293px               */
+/* width = 600px height × (9/16) = 338px               */
 .gallery__slot--portrait {
   flex-shrink: 0;
-  width: 293px;
+  width: auto;
   height: 100%;
   position: relative;
   overflow: hidden;
+  background: #0a0a0a;
+  /* Dark frame background */
+  border-radius: 4px;
+  /* Subtle rounding */
   cursor: pointer;
 }
 
-.gallery__slot--portrait > img {
+.gallery__slot--portrait>img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
   transition: transform 0.4s ease, filter 0.4s ease;
   pointer-events: none;
 }
 
-.gallery__slot--portrait:hover > img {
+.gallery__slot--portrait:hover>img {
   transform: scale(1.05);
   filter: brightness(0.68);
 }
@@ -104,19 +110,22 @@
   flex: 1;
   position: relative;
   overflow: hidden;
+  background: #0a0a0a;
+  /* Dark frame background */
+  border-radius: 4px;
   cursor: pointer;
 }
 
-.gallery__pair-img > img {
+.gallery__pair-img>img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
   transition: transform 0.4s ease, filter 0.4s ease;
   pointer-events: none;
 }
 
-.gallery__pair-img:hover > img {
+.gallery__pair-img:hover>img {
   transform: scale(1.06);
   filter: brightness(0.68);
 }
@@ -160,13 +169,25 @@
   transition: background 0.2s ease, transform 0.15s ease;
 }
 
-.gallery__arrow:hover { background: rgba(0, 0, 0, 0.8); }
+.gallery__arrow:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
 
-.gallery__arrow--prev { left: 20px; }
-.gallery__arrow--next { right: 20px; }
+.gallery__arrow--prev {
+  left: 20px;
+}
 
-.gallery__arrow--prev:hover { transform: translateY(-50%) translateX(-2px); }
-.gallery__arrow--next:hover { transform: translateY(-50%) translateX(2px); }
+.gallery__arrow--next {
+  right: 20px;
+}
+
+.gallery__arrow--prev:hover {
+  transform: translateY(-50%) translateX(-2px);
+}
+
+.gallery__arrow--next:hover {
+  transform: translateY(-50%) translateX(2px);
+}
 
 /* ─── Lightbox ────────────────────────────────────── */
 .lightbox {
@@ -181,8 +202,13 @@
 }
 
 @keyframes lb-fade-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .lightbox__img {
@@ -196,8 +222,15 @@
 }
 
 @keyframes lb-zoom-in {
-  from { transform: scale(0.94); opacity: 0; }
-  to   { transform: scale(1);    opacity: 1; }
+  from {
+    transform: scale(0.94);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .lightbox__close {
@@ -243,11 +276,25 @@
   backdrop-filter: blur(4px);
 }
 
-.lightbox__nav:hover { background: rgba(255, 255, 255, 0.22); }
-.lightbox__nav--prev { left: 24px; }
-.lightbox__nav--next { right: 24px; }
-.lightbox__nav--prev:hover { transform: translateY(-50%) translateX(-2px); }
-.lightbox__nav--next:hover { transform: translateY(-50%) translateX(2px); }
+.lightbox__nav:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.lightbox__nav--prev {
+  left: 24px;
+}
+
+.lightbox__nav--next {
+  right: 24px;
+}
+
+.lightbox__nav--prev:hover {
+  transform: translateY(-50%) translateX(-2px);
+}
+
+.lightbox__nav--next:hover {
+  transform: translateY(-50%) translateX(2px);
+}
 
 .lightbox__counter {
   position: fixed;
@@ -263,13 +310,41 @@
 
 /* ─── Responsive ──────────────────────────────────── */
 @media (max-width: 768px) {
-  .gallery__track   { height: 320px; }
-  .gallery__slot--portrait { width: 180px; }
-  .gallery__slot--pair     { width: 284px; }
-  .gallery__arrow   { width: 40px; height: 40px; }
-  .gallery__arrow--prev { left: 10px; }
-  .gallery__arrow--next { right: 10px; }
-  .lightbox__nav    { width: 40px; height: 40px; }
-  .lightbox__nav--prev { left: 8px; }
-  .lightbox__nav--next { right: 8px; }
+  .gallery__track {
+    height: 320px;
+  }
+
+  .gallery__slot--portrait {
+    width: 180px;
+  }
+
+  .gallery__slot--pair {
+    width: 284px;
+  }
+
+  .gallery__arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .gallery__arrow--prev {
+    left: 10px;
+  }
+
+  .gallery__arrow--next {
+    right: 10px;
+  }
+
+  .lightbox__nav {
+    width: 40px;
+    height: 40px;
+  }
+
+  .lightbox__nav--prev {
+    left: 8px;
+  }
+
+  .lightbox__nav--next {
+    right: 8px;
+  }
 }

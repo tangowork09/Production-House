@@ -22,19 +22,18 @@
 
 .hero__video {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  /* Portrait Shorts (9:16) — scale to cover the landscape frame */
-  height: 177.78%;
-  /* container_width × (16/9) expressed relative to height */
+  inset: 0;
   width: 100%;
-  min-height: 100%;
-  min-width: 56.25%;
-  transform: translate(-50%, -50%);
-  border: 0;
-  pointer-events: none;
+  height: 100%;
+  object-fit: cover;
 }
 
+.hero__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
 
 /* ─── Right: form panel ───────────────────────────── */
 .hero__panel {
