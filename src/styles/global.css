@@ -1,5 +1,7 @@
 /* ─── Reset & Base ──────────────────────────────────────────── */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -15,7 +17,7 @@
   --color-accent: #b8922a;
   --color-accent-dark: #9a7820;
 
-  --shadow-card: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.06);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.06);
 
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-display: 'Georgia', 'Times New Roman', serif;
@@ -37,13 +39,14 @@
   --color-accent: #e8c97e;
   --color-accent-dark: #c9a84c;
 
-  --shadow-card: 0 1px 3px rgba(0,0,0,0.4), 0 4px 16px rgba(0,0,0,0.3);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 /* ─── Base ──────────────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: hidden;
 }
 
 body {
@@ -56,7 +59,9 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-img, video, iframe {
+img,
+video,
+iframe {
   display: block;
   max-width: 100%;
 }
@@ -124,9 +129,18 @@ button {
 }
 
 /* ─── Scrollbar ─────────────────────────────────────────────── */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--color-bg); }
-::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
 
 /* ─── Selection ─────────────────────────────────────────────── */
 ::selection {

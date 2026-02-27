@@ -128,6 +128,7 @@ export default function Hero() {
           loop
           playsInline
           preload="metadata"
+          poster="/images/video_poster.png"
           onLoadedData={() => setVideoLoaded(true)}
         >
           <source src="/videos/showReel.mp4" type="video/mp4" />

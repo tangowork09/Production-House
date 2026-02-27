@@ -70,6 +70,8 @@ export default function Navbar() {
           src="/logo/logo.svg"
           alt="Prince Movie Creation"
           className="navbar__logo-img"
+          fetchPriority="high"
+          loading="eager"
           onError={(e) => {
             e.currentTarget.style.display = 'none'
             e.currentTarget.nextSibling.style.display = 'inline'
