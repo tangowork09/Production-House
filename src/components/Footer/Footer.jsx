@@ -10,11 +10,11 @@ export default function Footer() {
         {/* Column 1: Logo & Tagline */}
         <div className="footer__col">
           <Link to="/home" className="footer__logo">
-            <img src="/logo/logo.svg" alt="Prince Movie Creation" className="footer__logo-img" />
+            <img src="/logo/logo.webp" alt="Prince Movie Creation" className="footer__logo-img" />
             <span className="footer__logo-text">Prince Movie Creation</span>
           </Link>
           <p className="footer__desc">
-            Crafting cinematic experiences that resonate. From ad films to documentaries, we bring your vision to life.
+            25+ years of cinematic excellence. From Delhi to Dubai, Toronto to Los Angeles — 800+ productions delivered across India and the world.
           </p>
         </div>
 

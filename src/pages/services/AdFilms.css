@@ -1,0 +1,158 @@
+/* ═══════════════════════════════════════════════════════════
+   AD FILMS — Video Grid Layout
+   ═══════════════════════════════════════════════════════════ */
+
+.ads-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 32px;
+  padding-block: 40px;
+}
+
+.ad-card {
+  background: var(--cinema-surface);
+  border: 1px solid var(--cinema-border);
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+/* .ad-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--cinema-gold-dark);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+} */
+
+.ad-card__video-wrapper {
+  position: relative;
+  aspect-ratio: 16/9;
+  background: #000;
+  overflow: hidden;
+}
+
+.ad-card__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ad-card__info {
+  padding: 20px;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.4));
+}
+
+.ad-card__title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--cinema-gold);
+  margin-bottom: 8px;
+}
+
+.ad-card__meta {
+  font-size: 0.75rem;
+  color: var(--cinema-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Custom Overlays for 'Premium' feel over low quality */
+.ad-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.ad-card.is-playing .ad-card__overlay {
+  opacity: 0;
+}
+
+.ad-card__play-btn {
+  width: 60px;
+  height: 60px;
+  background: var(--cinema-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-size: 1.5rem;
+  box-shadow: 0 0 20px var(--cinema-gold-glow);
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.ad-card:hover .ad-card__play-btn {
+  transform: scale(1);
+}
+
+/* Controls bar (if needed for maximize) */
+.ad-card__controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 3;
+}
+
+.ad-card:hover .ad-card__controls {
+  opacity: 1;
+}
+
+.ad-control-btn {
+  color: #fff;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.ad-control-btn:hover {
+  opacity: 1;
+  color: var(--cinema-gold);
+  transform: scale(1.1);
+}
+
+/* Theme overrides for Light Mode */
+[data-theme="light"] .ad-card {
+  background: #fff;
+  border-color: rgba(154, 120, 32, 0.15);
+}
+
+[data-theme="light"] .ad-card:hover {
+  border-color: var(--cinema-gold);
+  box-shadow: 0 12px 40px rgba(100, 60, 10, 0.1);
+}
+
+[data-theme="light"] .ad-card__info {
+  background: linear-gradient(to bottom, transparent, rgba(154, 120, 32, 0.05));
+}
+
+[data-theme="light"] .ad-card__title {
+  color: var(--cinema-gold);
+}
+
+@media (max-width: 640px) {
+  .ads-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -4,9 +4,21 @@
 }
 
 .service-page__hero {
-  background: #0f0f0f;
-  padding: 80px 24px;
+  background: linear-gradient(180deg, var(--cinema-dark) 0%, var(--cinema-surface) 100%);
+  padding: 20px;
   text-align: center;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+  position: relative;
+}
+
+.service-page__hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cinema-red-bright) 30%, var(--cinema-gold) 70%, transparent);
 }
 
 .service-page__label {
@@ -23,16 +35,28 @@
   font-family: var(--font-display);
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
-  color: #f0f0f0;
+  color: var(--cinema-text);
   margin-bottom: 16px;
 }
 
 .service-page__sub {
-  font-size: 1.05rem;
-  color: #aaa;
+  font-size: 1rem;
+  color: var(--cinema-muted);
   max-width: 520px;
   margin: 0 auto;
-  line-height: 1.7;
+  line-height: 1.75;
+}
+
+.service-page__body {
+  padding-block: 80px;
+  background: var(--cinema-black);
+}
+
+.service-page__coming {
+  font-size: 1rem;
+  color: var(--cinema-muted);
+  text-align: center;
+  padding: 60px 0;
 }
 
 .service-page__body {

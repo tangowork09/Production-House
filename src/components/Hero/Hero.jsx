@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
 import './Hero.css'
 const WEB3FORMS_KEY = '5bdceb13-584a-4c8e-aaa8-aeec3b193ac8'
 
@@ -43,18 +43,17 @@ const validators = {
   budget(v) { return v ? '' : 'Please select a budget range' },
 }
 
-const initialValues = { name: '', email: '', phone: '', service: '', budget: '' }
-const initialErrors = { name: '', email: '', phone: '', service: '', budget: '' }
+const initialValues  = { name: '', email: '', phone: '', service: '', budget: '' }
+const initialErrors  = { name: '', email: '', phone: '', service: '', budget: '' }
 const initialTouched = { name: false, email: false, phone: false, service: false, budget: false }
 
 export default function Hero() {
-  const [values, setValues] = useState(initialValues)
-  const [errors, setErrors] = useState(initialErrors)
-  const [touched, setTouched] = useState(initialTouched)
-  const [status, setStatus] = useState('idle')
+  const [values,      setValues]      = useState(initialValues)
+  const [errors,      setErrors]      = useState(initialErrors)
+  const [touched,     setTouched]     = useState(initialTouched)
+  const [status,      setStatus]      = useState('idle')
   const [videoLoaded, setVideoLoaded] = useState(false)
 
-  // ── Form logic ──────────────────────────────────────────────
   function validate(name, value) {
     return validators[name] ? validators[name](value) : ''
   }
@@ -119,7 +118,7 @@ export default function Hero() {
   return (
     <section className="hero" id="hero">
 
-      {/* ── Left: video ── */}
+      {/* ── Left: video + cinematic overlay ── */}
       <div className={`hero__media ${videoLoaded ? 'hero__media--loaded' : ''}`}>
         <video
           className="hero__video"
@@ -133,56 +132,74 @@ export default function Hero() {
         >
           <source src="/videos/showReel.mp4" type="video/mp4" />
         </video>
+
+        {/* Cinematic overlay — CTA buttons only */}
+        <div className="hero__overlay">
+          <div className="hero__overlay-ctas">
+            <a href="#work" className="hero__overlay-btn hero__overlay-btn--primary">
+              <span>Explore Our Work</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </a>
+            <a href="#services" className="hero__overlay-btn hero__overlay-btn--ghost">
+              <span>Our Services</span>
+            </a>
+          </div>
+        </div>
       </div>
 
       {/* ── Right: callback form ── */}
       <div className="hero__panel">
         <div className="hero__panel-inner">
-          <h2 className="hero__panel-title">Let's Connect<br />for Ideas Now</h2>
+          <p className="hero__panel-eyebrow">Get in Touch</p>
+          <h2 className="hero__panel-title">Let's Bring Your<br />Vision to Life</h2>
           <p className="hero__panel-sub">
-            Share your requirements and our team will connect with you.
+            Share your requirements and our creative team will connect with you within 24 hours.
           </p>
 
           <form className="hero__form" onSubmit={handleSubmit} noValidate>
 
             <div className="hero__form-group">
-              <input {...field('name')} type="text" placeholder="Enter your full name" />
+              <input {...field('name')} type="text" placeholder="Your full name" />
               {touched.name && errors.name && <span className="hero__form-error">{errors.name}</span>}
             </div>
 
             <div className="hero__form-group">
-              <input {...field('email')} type="email" placeholder="Enter your email" />
+              <input {...field('email')} type="email" placeholder="Your email address" />
               {touched.email && errors.email && <span className="hero__form-error">{errors.email}</span>}
             </div>
 
             <div className="hero__form-group">
-              <input {...field('phone')} type="tel" placeholder="Enter your phone number" maxLength={13} />
+              <input {...field('phone')} type="tel" placeholder="Your phone number" maxLength={13} />
               {touched.phone && errors.phone && <span className="hero__form-error">{errors.phone}</span>}
             </div>
 
-            <div className="hero__form-group">
-              <select {...field('service')}>
-                <option value="" disabled>Select Service</option>
-                {serviceOptions.map(s => <option key={s} value={s}>{s}</option>)}
-              </select>
-              {touched.service && errors.service && <span className="hero__form-error">{errors.service}</span>}
-            </div>
+            <div className="hero__form-row">
+              <div className="hero__form-group">
+                <select {...field('service')}>
+                  <option value="" disabled>Select Service</option>
+                  {serviceOptions.map(s => <option key={s} value={s}>{s}</option>)}
+                </select>
+                {touched.service && errors.service && <span className="hero__form-error">{errors.service}</span>}
+              </div>
 
-            <div className="hero__form-group">
-              <select {...field('budget')}>
-                <option value="" disabled>Budget</option>
-                {budgetOptions.map(b => <option key={b} value={b}>{b}</option>)}
-              </select>
-              {touched.budget && errors.budget && <span className="hero__form-error">{errors.budget}</span>}
+              <div className="hero__form-group">
+                <select {...field('budget')}>
+                  <option value="" disabled>Budget Range</option>
+                  {budgetOptions.map(b => <option key={b} value={b}>{b}</option>)}
+                </select>
+                {touched.budget && errors.budget && <span className="hero__form-error">{errors.budget}</span>}
+              </div>
             </div>
 
             <button className="hero__form-btn" type="submit" disabled={status === 'sending'}>
-              {status === 'sending' ? 'Sending…' : 'Request A Callback'}
+              {status === 'sending' ? 'Sending…' : 'Request A Free Callback'}
             </button>
 
             {status === 'sent' && (
               <p className="hero__form-feedback hero__form-feedback--success">
-                ✓ Thank you! We'll contact you shortly.
+                ✓ Thank you! We'll contact you within 24 hours.
               </p>
             )}
             {status === 'error' && (
@@ -191,6 +208,10 @@ export default function Hero() {
               </p>
             )}
           </form>
+
+          <p className="hero__form-trust">
+            🔒 Your information is safe with us. No spam, ever.
+          </p>
         </div>
       </div>
 

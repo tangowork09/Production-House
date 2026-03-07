@@ -41,13 +41,23 @@
   <meta name="color-scheme" content="dark light" />
 
   <!-- ─── Favicons ────────────────────────────────────────────── -->
-  <link rel="icon" type="image/svg+xml" href="/logo/logo.svg" />
+  <link rel="icon" type="image/webp" href="/logo/logo.webp" />
   <link rel="alternate icon" type="image/webp" href="/favicon.webp" />
   <link rel="apple-touch-icon" href="/favicon.webp" />
+
+  <!-- ─── Anti-FOUT: apply saved theme before first paint ──── -->
+  <script>
+    (function () {
+      var t = localStorage.getItem('pmc-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
 
   <!-- ─── Preconnect ──────────────────────────────────────────── -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Playfair Display (cinematic headings) + Inter (body) -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- ─── Structured Data: Organization ──────────────────────── -->
   <script type="application/ld+json">
@@ -56,7 +66,7 @@
       "@type": "Organization",
       "name": "Prince Movie Creation",
       "url": "https://princemoviecreations.pages.dev",
-      "logo": "https://princemoviecreations.pages.dev/logo/logo.svg",
+      "logo": "https://princemoviecreations.pages.dev/logo/logo.webp",
       "description": "Prince Movie Creation is a leading film and media production house in India, specialising in ad films, corporate documentaries, music videos, and short films.",
       "foundingLocation": {
         "@type": "Place",

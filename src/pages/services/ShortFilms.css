@@ -1,0 +1,151 @@
+/* ═══════════════════════════════════════════════════════════
+   SHORT FILMS — Compact Dynamic Masonry Gallery
+   Handles mixed aspect ratios beautifully
+   ═══════════════════════════════════════════════════════════ */
+
+.shorts-gallery {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  padding-block: 30px;
+}
+
+.short-card {
+  background: var(--cinema-surface);
+  border: 1px solid var(--cinema-border);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.short-card:hover {
+  border-color: rgba(212, 175, 55, 0.35);
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.4),
+    0 0 12px rgba(212, 175, 55, 0.08);
+}
+
+/* ─── Video — natural sizing, no forced ratio ──────────── */
+.short-card__video-wrapper {
+  position: relative;
+  background: #000;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.short-card__video {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+/* In fullscreen, fit the video instead of cropping */
+.short-card__video:fullscreen,
+.short-card__video:-webkit-full-screen {
+  object-fit: contain;
+  background: #000;
+}
+
+/* ─── Subtle gold accent line at bottom of each card ───── */
+.short-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 8%;
+  right: 8%;
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(212, 175, 55, 0.25),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.short-card:hover::after {
+  opacity: 1;
+}
+
+/* ─── Hover controls ───────────────────────────────────── */
+.short-card__controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.short-card:hover .short-card__controls {
+  opacity: 1;
+}
+
+.short-control-btn {
+  color: #fff;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.short-control-btn:hover {
+  opacity: 1;
+  color: var(--cinema-gold);
+  transform: scale(1.15);
+}
+
+/* ─── Light mode ───────────────────────────────────────── */
+[data-theme="light"] .short-card {
+  background: #fff;
+  border-color: rgba(154, 120, 32, 0.12);
+}
+
+[data-theme="light"] .short-card:hover {
+  border-color: rgba(154, 120, 32, 0.4);
+  box-shadow:
+    0 4px 20px rgba(100, 60, 10, 0.1),
+    0 0 12px rgba(154, 120, 32, 0.06);
+}
+
+[data-theme="light"] .short-card::after {
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(154, 120, 32, 0.3),
+    transparent
+  );
+}
+
+/* ─── Responsive ───────────────────────────────────────── */
+@media (max-width: 1200px) {
+  .shorts-gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .shorts-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .short-card__video {
+    height: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .shorts-gallery {
+    grid-template-columns: 1fr;
+  }
+}

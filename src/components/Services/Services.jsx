@@ -1,11 +1,14 @@
 import { Link } from 'react-router-dom'
+import { useEffect, useRef } from 'react'
 import './Services.css'
 
 const services = [
   {
     slug: 'ad-films',
+    num: '01',
     title: 'Ad Films',
-    desc: 'Creative ads that drive attention and results.',
+    tagline: 'Stories that sell',
+    tags: ['TV Commercials', 'Digital Ads', 'Brand Films', 'Social Media'],
     icon: (
       <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="4" y="10" width="40" height="28" rx="3" stroke="currentColor" strokeWidth="2.5"/>
@@ -16,8 +19,10 @@ const services = [
   },
   {
     slug: 'corporate-documentary',
-    title: 'Corporate | Documentary',
-    desc: 'Authentic stories that build brand trust.',
+    num: '02',
+    title: 'Corporate & Documentary',
+    tagline: 'Truth through lens',
+    tags: ['Corporate Films', 'Documentaries', 'Event Coverage', 'Brand Stories'],
     icon: (
       <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="6" y="14" width="24" height="24" rx="2" stroke="currentColor" strokeWidth="2.5"/>
@@ -28,8 +33,10 @@ const services = [
   },
   {
     slug: 'music-videos',
+    num: '03',
     title: 'Music Videos',
-    desc: 'Visuals that elevate sound and emotion.',
+    tagline: 'Sound made visual',
+    tags: ['Artist Videos', 'Album Visuals', 'Lyric Videos', 'Live Sessions'],
     icon: (
       <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="14" cy="36" r="6" stroke="currentColor" strokeWidth="2.5"/>
@@ -41,8 +48,10 @@ const services = [
   },
   {
     slug: 'short-films',
+    num: '04',
     title: 'Short Films',
-    desc: 'Stories told with cinematic excellence.',
+    tagline: 'Cinema in every frame',
+    tags: ['Narrative Films', 'Festival Shorts', 'Web Series', 'Art Films'],
     icon: (
       <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="4" y="14" width="40" height="28" rx="2" stroke="currentColor" strokeWidth="2.5"/>
@@ -55,46 +64,75 @@ const services = [
 ]
 
 const stats = [
-  { number: '70+',  label: 'Clients have collaborated with us' },
-  { number: '11+',  label: 'Years of work experience in the industry' },
-  { number: '400+', label: 'Projects delivered successfully so far' },
+  { number: '800+', label: 'Projects Delivered' },
+  { number: '25+',  label: 'Years of Excellence' },
+  { number: '15+',  label: 'Countries Served' },
 ]
 
 export default function Services() {
+  const sectionRef = useRef(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('visible')
+        })
+      },
+      { threshold: 0.08 }
+    )
+    const targets = sectionRef.current?.querySelectorAll('.reveal, .reveal-d1, .reveal-d2, .reveal-d3, .reveal-d4')
+    targets?.forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <section className="services" id="services">
+    <section className="services" id="services" ref={sectionRef}>
       <div className="container">
-
-        {/* Header */}
-        <div className="services__header">
+        <div className="services__header reveal">
           <span className="services__label">What We Do</span>
-          <h2 className="services__title">Our Video Production Services</h2>
-          <p className="services__sub">Crafting stories that connect, inspire, and convert.</p>
+          <h2 className="services__title">Our Production Services</h2>
+          <p className="services__sub">
+            From Delhi to Dubai, Toronto to Los Angeles — 25+ years of cinematic excellence, delivered globally.
+          </p>
         </div>
+      </div>
 
-        {/* 4 Service Cards */}
-        <div className="services__grid">
-          {services.map((s) => (
-            <div className="service-card" key={s.slug}>
-              <div className="service-card__icon">{s.icon}</div>
-              <h3 className="service-card__title">{s.title}</h3>
-              <p className="service-card__desc">{s.desc}</p>
-              <Link
-                to={`/${s.slug}`}
-                className="service-card__link"
-              >
-                Know More
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12"/>
-                  <polyline points="12 5 19 12 12 19"/>
-                </svg>
-              </Link>
+      {/* 2×2 compact card grid — full bleed */}
+      <div className="services__grid">
+        {services.map((s, i) => (
+          <Link to={`/${s.slug}`} className={`svc-card reveal-d${i + 1}`} key={s.slug}>
+
+            {/* Ghost number */}
+            <span className="svc-card__ghost" aria-hidden="true">{s.num}</span>
+
+            {/* Icon */}
+            <div className="svc-card__icon">{s.icon}</div>
+
+            {/* Content */}
+            <div className="svc-card__body">
+              <p className="svc-card__tagline">{s.tagline}</p>
+              <h3 className="svc-card__title">{s.title}</h3>
+              <ul className="svc-card__tags">
+                {s.tags.map(tag => <li key={tag}>{tag}</li>)}
+              </ul>
             </div>
-          ))}
-        </div>
 
-        {/* Stats Banner */}
-        <div className="services__stats">
+            {/* Footer CTA */}
+            <div className="svc-card__footer">
+              <span>View All</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </div>
+
+          </Link>
+        ))}
+      </div>
+
+      {/* Stats Banner */}
+      <div className="container">
+        <div className="services__stats reveal">
           {stats.map((s) => (
             <div className="services__stat" key={s.label}>
               <span className="services__stat-num">{s.number}</span>
@@ -102,8 +140,8 @@ export default function Services() {
             </div>
           ))}
         </div>
-
       </div>
+
     </section>
   )
 }

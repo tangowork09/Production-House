@@ -56,7 +56,7 @@
 /* ─── CEO Section ────────────────────────────────────────────── */
 .ceo-section {
     padding: 96px 0 128px;
-    background: #f7f5ef;
+    background: var(--cinema-surface);
     position: relative;
     overflow: hidden;
 }
@@ -80,8 +80,8 @@
 
 /* ─── Card ───────────────────────────────────────────────────── */
 .ceo-card {
-    background: #ffffff;
-    border: 1px solid #ede8de;
+    background: rgba(21, 16, 16, 0.9);
+    border: 1px solid rgba(212, 175, 55, 0.12);
     border-radius: 20px;
     padding: 52px 36px 44px;
     text-align: center;
@@ -186,7 +186,7 @@
 .ceo-name {
     font-size: 1.2rem;
     font-weight: 700;
-    color: #0a0a0a;
+    color: var(--cinema-text);
     margin-bottom: 8px;
     letter-spacing: -0.015em;
     line-height: 1.3;
@@ -204,7 +204,7 @@
 .ceo-divider {
     width: 32px;
     height: 1px;
-    background: #e8e2d8;
+    background: rgba(212, 175, 55, 0.2);
     margin: 0 auto 24px;
     border-radius: 1px;
 }
@@ -213,11 +213,11 @@
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    color: #666;
+    color: var(--cinema-muted);
     font-size: 0.875rem;
     font-weight: 500;
     padding: 10px 22px;
-    border: 1px solid #e0dbd0;
+    border: 1px solid rgba(212, 175, 55, 0.15);
     border-radius: 100px;
     background: transparent;
     transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
@@ -225,8 +225,8 @@
 }
 
 .ceo-phone:hover {
-    color: #0a0a0a;
-    border-color: rgba(184, 146, 42, 0.4);
+    color: var(--cinema-gold);
+    border-color: rgba(212, 175, 55, 0.4);
     background: rgba(184, 146, 42, 0.04);
     box-shadow: 0 2px 12px rgba(184, 146, 42, 0.1);
 }
