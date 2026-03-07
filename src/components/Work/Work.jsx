@@ -33,7 +33,7 @@ const categories = [
     title: "Short Films",
     tagline: "Cinematic depth, powerful moments",
     tags: ["Narrative Shorts", "Festival Films", "Web Series"],
-    video: "/videos/music/music-7.mp4",
+    video: "/videos/music/music-6.mp4",
   },
 ];
 

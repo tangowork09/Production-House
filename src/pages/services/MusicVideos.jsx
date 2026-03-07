@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import "./ServicePage.css";
 import "./MusicVideos.css";
 
-const MUSIC_COUNT = 8;
+const MUSIC_COUNT = 7;
 
 export default function MusicVideos() {
   const [playingId, setPlayingId] = useState(null);
